@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('descripcion');
             $table->string('foto');
             $table->double('precio', 4, 2);
-            $table->enum('categoria', ['tradicional', 'italiana', 'china', 'hamburgueseria']);
+            $table->enum('categoria', ['tradicional', 'italiana', 'china', 'americana']);
             $table->timestamps();
             $table->foreignId('restaurante_id')->constrained('restaurantes')->onDelete('cascade');
         });
