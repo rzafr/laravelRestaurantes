@@ -15,12 +15,11 @@ return new class extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('fecha');
             $table->enum('estado', ['recibido', 'finalizado', 'entregado', 'cancelado']);
             $table->timestamps();
-            $table->foreignId('cliente_id')->constrained('users');
-            $table->foreignId('restaurante_id')->constrained('restaurantes');
-            $table->foreignId('repartidor_id')->constrained('users');
+            $table->foreignId('cliente_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('restaurante_id')->constrained('restaurantes')->onDelete('cascade');
+            $table->foreignId('repartidor_id')->constrained('users')->onDelete('cascade');
         });
     }
 

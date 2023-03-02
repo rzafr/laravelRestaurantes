@@ -37,15 +37,22 @@ class RegisteredUserController extends Controller
         ]);
 
         $user = User::create([
+            'dni' => $request->dni,
             'nombre' => $request->nombre,
+            'apellidos' => $request->apellidos,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'direccion' => $request->direccion,
+            'ciudad' => $request->ciudad,
+            'telefono' => $request->telefono,
         ]);
 
         event(new Registered($user));
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        // Todos los registros son clientes por defecto
+        return redirect()->intended("/platos");
+
     }
 }

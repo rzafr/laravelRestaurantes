@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pedido_plato', function (Blueprint $table) {
-            $table->foreignId('pedido_id')->constrained('pedidos');
-            $table->foreignId('plato_id')->constrained('platos');
+            $table->foreignId('pedido_id')->constrained('pedidos')->onDelete('cascade');
+            $table->foreignId('plato_id')->constrained('platos')->onDelete('cascade');
             $table->timestamps();
             $table->primary(['pedido_id', 'plato_id']);
         });

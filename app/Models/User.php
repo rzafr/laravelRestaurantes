@@ -18,9 +18,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'dni',
+        'nombre',
+        'apellidos',
         'email',
         'password',
+        'direccion',
+        'ciudad',
+        'telefono',
     ];
 
     /**
@@ -41,4 +46,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the clientes.
+     */
+    public static function clientes()
+    {
+        return User::where('rol', 'cliente');
+    }
+
+    /**
+     * Get the repartidores.
+     */
+    public static function repartidores()
+    {
+        return User::where('rol', 'repartidor');
+    }
 }

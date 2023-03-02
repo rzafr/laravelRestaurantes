@@ -29,7 +29,18 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        
+        // Si se loguea un cliente va a /platos
+        // Si se loguea admin, gestor o repartidor va a su Dashboard
+        if ($request->user()->rol == "admin") {
+            return redirect()->intended(RouteServiceProvider::HOME);
+        } else if ($request->user()->rol == "cliente") {
+            return redirect()->intended("/platos");
+        } else if ($request->user()->rol == "gestor") {
+            //return redirect()->intended("/surestaurante");
+        } else if ($request->user()->rol == "repartidor") {
+            //return redirect()->intended("/suspedidossusdatos");
+        }
     }
 
     /**
