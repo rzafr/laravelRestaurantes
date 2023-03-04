@@ -8,7 +8,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             
-            <a href="/restaurantesAdmin/{{ $restaurante->id }}/platos/agregar"><button type='button' class="bg-gray-400 hover:bg-gray-600 text-white py-2 px-4 rounded">Agregar plato</button></a>-->
+            <x-boton-t href="/restaurantesAdmin/{{ $restaurante->id }}/platos/agregar">
+                {{ __('Agregar plato') }}
+            </x-boton-t>
             
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -49,7 +51,7 @@
                                         {{ $plato->descripcion }}
                                     </td>
                                     <td class="px-6 py-4">
-                                    <img src="{{ asset($plato->foto) }}" width="200" height="200" alt="{{ $plato->nombre }}">
+                                        <img src="{{ asset($plato->foto) }}" width="200" height="200" alt="{{ $plato->nombre }}">
                                     </td>
                                     <td class="px-6 py-4">
                                         {{ $plato->precio }}
@@ -61,9 +63,9 @@
                                         {{ $plato->restaurante_id }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <a href="/restaurantesAdmin/{{ $restaurante->id }}/platos/{{ $plato->id }}/eliminar"><x-boton-t type='secondary' mensaje='Eliminar'/></a>
-                                        <!--<a href="/restaurantesAdmin/{{ $restaurante->id }}/modificar"><x-boton-t type='secondary' mensaje='Modificar'/></a>
-                                        <a href="/restaurantesAdmin/{{ $restaurante->id }}/platos"><x-boton-t type='secondary' mensaje='Ver platos'/></a>-->
+                                        <x-boton-t href="/restaurantesAdmin/{{ $restaurante->id }}/platos/{{ $plato->id }}/eliminar">
+                                            {{ __('Eliminar') }}
+                                        </x-boton-t>
                                     </td>
                                 </tr>
                                 @endforeach

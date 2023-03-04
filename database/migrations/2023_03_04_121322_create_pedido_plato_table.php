@@ -17,7 +17,6 @@ return new class extends Migration
             $table->foreignId('pedido_id')->constrained('pedidos')->onDelete('cascade');
             $table->foreignId('plato_id')->constrained('platos')->onDelete('cascade');
             $table->timestamps();
-            $table->primary(['pedido_id', 'plato_id']);
         });
     }
 

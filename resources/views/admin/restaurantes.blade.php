@@ -63,9 +63,6 @@
                                         {{ $restaurante->longitud }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <!-- <a href="/restaurantesAdmin/{{ $restaurante->id }}/eliminar"><x-boton-t type='secondary' mensaje='Eliminar'/></a>
-                                        <a href="/restaurantesAdmin/{{ $restaurante->id }}/modificar"><x-boton-t type='secondary' mensaje='Modificar'/></a>
-                                        <a href="/restaurantesAdmin/{{ $restaurante->id }}/platos"><x-boton-t type='secondary' mensaje='Ver platos'/></a> -->
                                         <x-boton-t href="/restaurantesAdmin/{{ $restaurante->id }}/eliminar">
                                             {{ __('Eliminar') }}
                                         </x-boton-t>

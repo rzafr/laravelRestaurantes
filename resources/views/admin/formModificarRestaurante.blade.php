@@ -1,87 +1,63 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Restaurantes') }}
+            {{ __('Formulario modificar restaurante') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+            <form method="POST" action="/restaurantesAdmin/{{ $restaurante->id }}/update">
+                @csrf
 
-                <div class="w-full max-w-xs mx-auto">
-                    <h3 class='text-lg dark:text-gray-400'>Modificar restaurante</h3>
-                    
-                    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" method='POST' action='/restaurantesAdmin/{{ $restaurante->id }}/update'>
-                        @csrf
-
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">
-                                Nombre
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="nombre" name="nombre" type="text" value="{{ old('nombre') }}" required>
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="direccion">
-                                Direccion
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="direccion" name="direccion" type="text" value="{{ old('direccion') }}" required>
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="ciudad">
-                                Ciudad
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="ciudad" name="ciudad" type="text" value="{{ old('ciudad') }}">
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="telefono">
-                                Telefono
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="telefono" name="telefono" type="text" value="{{ old('telefono') }}">
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="latitud">
-                                Latitud
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="latitud" name="latitud" type="text" value="{{ old('latitud') }}">
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="longitud">
-                                Longitud
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="longitud" name="longitud" type="text" value="{{ old('longitud') }}">
-                        </div>
-
-
-                        <div class="flex items-center justify-center">
-                            <button
-                                class="bg-blue-500 hover:bg-blue-700 text-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                type="submit">
-                                Modificar restaurante
-                            </button>
-                        </div>
-                    </form>
+                <!-- Nombre -->
+                <div>
+                    <x-input-label for="nombre" :value="__('Nombre')" />
+                    <x-text-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')" required autofocus autocomplete="nombre" />
+                    <x-input-error :messages="$errors->get('nombre')" class="mt-2" />
                 </div>
 
+                <!-- Direccion -->
+                <div>
+                    <x-input-label for="direccion" :value="__('Direccion')" />
+                    <x-text-input id="direccion" class="block mt-1 w-full" type="text" name="direccion" :value="old('direccion')" required autofocus autocomplete="direccion" />
+                    <x-input-error :messages="$errors->get('direccion')" class="mt-2" />
+                </div>
 
-            </div>
+                <!-- Ciudad -->
+                <div>
+                    <x-input-label for="ciudad" :value="__('Ciudad')" />
+                    <x-text-input id="ciudad" class="block mt-1 w-full" type="text" name="ciudad" :value="old('ciudad')" required autofocus autocomplete="ciudad" />
+                    <x-input-error :messages="$errors->get('ciudad')" class="mt-2" />
+                </div>
+
+                <!-- Telefono -->
+                <div>
+                    <x-input-label for="telefono" :value="__('Telefono')" />
+                    <x-text-input id="telefono" class="block mt-1 w-full" type="text" name="telefono" :value="old('telefono')" required autofocus autocomplete="telefono" />
+                    <x-input-error :messages="$errors->get('telefono')" class="mt-2" />
+                </div>
+
+                <!-- Latitud -->
+                <div>
+                    <x-input-label for="latitud" :value="__('Latitud')" />
+                    <x-text-input id="latitud" class="block mt-1 w-full" type="text" name="latitud" :value="old('latitud')" required autofocus autocomplete="latitud" />
+                    <x-input-error :messages="$errors->get('latitud')" class="mt-2" />
+                </div>
+
+                <!-- Longitud -->
+                <div>
+                    <x-input-label for="longitud" :value="__('Longitud')" />
+                    <x-text-input id="longitud" class="block mt-1 w-full" type="text" name="longitud" :value="old('longitud')" required autofocus autocomplete="longitud" />
+                    <x-input-error :messages="$errors->get('longitud')" class="mt-2" />
+                </div>
+
+                <div class="flex items-center justify-end mt-4">
+                    <x-primary-button class="ml-4">
+                        {{ __('Modificar') }}
+                    </x-primary-button>
+                </div>
+            </form>
         </div>
     </div>
 </x-app-layout>

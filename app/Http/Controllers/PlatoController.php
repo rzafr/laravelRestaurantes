@@ -50,7 +50,7 @@ class PlatoController extends Controller
 
         // Foto
         $path = $request->file('foto')->store('public');
-        // /public/nombreimagengenerado.jpg
+        
         // Cambiamos public por storage en la BBDD para que se pueda ver la imagen en la web
         $plato->foto =  str_replace('public', 'storage', $path);
 
@@ -102,6 +102,7 @@ class PlatoController extends Controller
     public function destroy(Restaurante $restaurante, Plato $plato)
     {
         $plato->delete();
+        
         return redirect('/restaurantesAdmin/' . $restaurante->id . '/platos');
     }
 
@@ -120,4 +121,6 @@ class PlatoController extends Controller
     {
         return view('admin.platosRestaurante' , ['restaurante' => $restaurante, 'platos' => $restaurante->platos()->get()]);
     }
+
+    
 }

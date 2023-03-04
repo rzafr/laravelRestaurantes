@@ -1,83 +1,56 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Restaurantes') }}
+            {{ __('Formulario nuevo plato') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+            <form method="POST" action='/restaurantesAdmin/{{ $restaurante->id }}/platos/store' enctype="multipart/form-data">
+                @csrf
 
-                <div class="w-full max-w-xs mx-auto">
-                    <h3 class='text-lg dark:text-gray-400'>Agregar plato</h3>
-                    
-                    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" method='POST' action='/restaurantesAdmin/{{ $restaurante->id }}/platos/store' enctype="multipart/form-data">
-                        @csrf
-
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">
-                                Nombre
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="nombre" name="nombre" type="text" value="{{ old('nombre') }}" required>
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="descripcion">
-                                Descripcion
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="descripcion" name="descripcion" type="text" value="{{ old('descripcion') }}" required>
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="foto">
-                                Foto
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="foto" name="foto" type="file" value="{{ old('foto') }}">
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="precio">
-                                Precio
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="precio" name="precio" type="text" value="{{ old('precio') }}">
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="categoria">
-                                Categoria
-                            </label>
-                            <select
-                                class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                                name="categoria">
-                                <option value="tradicional">Tradicional</option>
-                                <option value="italiana">Italiana</option>
-                                <option value="hamburgueseria">Hamburgueseria</option>
-                                <option value="china">China</option>
-                            </select>
-                        </div>
-
-
-                        <div class="flex items-center justify-center">
-                            <button
-                                class="bg-blue-500 hover:bg-blue-700 text-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                type="submit">
-                                Agregar plato
-                            </button>
-                        </div>
-                    </form>
+                <!-- Nombre -->
+                <div>
+                    <x-input-label for="nombre" :value="__('Nombre')" />
+                    <x-text-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')" required autofocus autocomplete="nombre" />
+                    <x-input-error :messages="$errors->get('nombre')" class="mt-2" />
                 </div>
 
+                <!-- Descripcion -->
+                <div>
+                    <x-textarea-label for="descripcion" :value="__('Descripcion')" />
+                    <x-textarea id="descripcion" class="block mt-1 w-full" type="text" name="descripcion" :value="old('descripcion')" required autofocus autocomplete="descripcion" />
+                    <x-textarea-error :messages="$errors->get('descripcion')" class="mt-2" />
+                </div>
 
-            </div>
+                <!-- Foto -->
+                <div>
+                    <x-input-label for="foto" :value="__('Foto')" />
+                    <x-text-input id="foto" class="block mt-1 w-full" type="file" name="foto" :value="old('foto')" required autofocus autocomplete="foto" />
+                    <x-input-error :messages="$errors->get('foto')" class="mt-2" />
+                </div>
+
+                <!-- Precio -->
+                <div>
+                    <x-input-label for="precio" :value="__('Precio')" />
+                    <x-text-input id="precio" class="block mt-1 w-full" type="text" name="precio" :value="old('precio')" required autofocus autocomplete="precio" />
+                    <x-input-error :messages="$errors->get('precio')" class="mt-2" />
+                </div>
+
+                <!-- Categoria -->
+                <div>
+                    <x-input-label for="categoria" :value="__('Categoria')" />
+                    <x-text-input id="categoria" class="block mt-1 w-full" type="text" name="categoria" :value="old('categoria')" required autofocus autocomplete="categoria" />
+                    <x-input-error :messages="$errors->get('categoria')" class="mt-2" />
+                </div>
+                
+                <div class="flex items-center justify-end mt-4">
+                    <x-primary-button class="ml-4">
+                        {{ __('Agregar') }}
+                    </x-primary-button>
+                </div>
+            </form>
         </div>
     </div>
 </x-app-layout>

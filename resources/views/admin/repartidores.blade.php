@@ -1,14 +1,16 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Repartidores') }}
+            {{ __('Control de repartidores') }}
         </h2>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
-            <a href="/repartidores/agregar"><button type='button' class="bg-gray-400 hover:bg-gray-600 text-white py-2 px-4 rounded">Agregar repartidor</button></a>
+            <x-boton-t href="/repartidores/agregar">
+                {{ __('Agregar repartidor') }}
+            </x-boton-t>
 
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
@@ -34,7 +36,7 @@
                                     <th scope="col" class="px-6 py-3">
                                         Estado
                                     </th>
-                                    <th scope="col" class="px-6 py-3">
+                                    <th scope="col" class="px-6 py-3" colspan="2">
                                         Acciones
                                     </th>
                                 </tr>
@@ -61,8 +63,14 @@
                                         {{ $repartidor->estado }}
                                     </td>
                                     <td class="px-6 py-4">
-                                        <a href="/repartidores/{{ $repartidor->id }}/eliminar"><x-boton-t type='secondary' mensaje='Eliminar'/></a>
-                                        <a href="/repartidores/{{ $repartidor->id }}/modificar"><x-boton-t type='secondary' mensaje='Modificar'/></a>
+                                        <x-boton-t href="/repartidores/{{ $repartidor->id }}/eliminar">
+                                            {{ __('Eliminar') }}
+                                        </x-boton-t>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <x-boton-t href="/repartidores/{{ $repartidor->id }}/modificar">
+                                            {{ __('Modificar') }}
+                                        </x-boton-t>
                                     </td>
                                 </tr>
                                 @endforeach

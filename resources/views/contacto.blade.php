@@ -7,7 +7,7 @@
     <div class="row mb-5 d-flex justify-content-center">
         <div class="col-6 mx-auto">
             <p>Asociacion de restaurantes del levante almeriense que te llevan los mejores platos a tu domicilio.</p>
-            <p><i class="fas fa-home me-3 text-secondary"></i> Cuevas del Almanzora, 04610, AL</p>
+            <p><i class="fas fa-home me-3 text-secondary"></i> Cuevas del Almanzora, 04610, Almeria</p>
             <p>
             <i class="fas fa-envelope me-3 text-secondary"></i>
             info@indalfood.com

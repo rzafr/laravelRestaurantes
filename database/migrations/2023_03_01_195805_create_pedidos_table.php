@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pedidos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->enum('estado', ['recibido', 'finalizado', 'entregado', 'cancelado']);
-            $table->timestamps();
-            $table->foreignId('cliente_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('restaurante_id')->constrained('restaurantes')->onDelete('cascade');
-            $table->foreignId('repartidor_id')->constrained('users')->onDelete('cascade');
-        });
+        // Schema::create('pedidos', function (Blueprint $table) {
+        //     $table->bigIncrements('id');
+        //     $table->enum('estado', ['recibido', 'finalizado', 'entregado', 'cancelado']);
+        //     $table->timestamps();
+        //     $table->foreignId('cliente_id')->constrained('users')->onDelete('cascade');
+        //     $table->foreignId('restaurante_id')->constrained('restaurantes')->onDelete('cascade');
+        //     $table->foreignId('repartidor_id')->constrained('users')->onDelete('cascade');
+        // });
     }
 
     /**
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pedidos');
+        // Schema::dropIfExists('pedidos');
     }
 };

@@ -6,6 +6,7 @@
     
     
     @foreach($platos as $plato)
+
         <x-plato>
             <div class="col-3">
                 <img src="{{ asset($plato->foto) }}" class="card-img-top" height="250" alt="{{ $plato->nombre }}">
@@ -22,8 +23,8 @@
                     Precio: {{ $plato->precio }} €
                 </p>
             </div>
-            
         </x-plato>
+        
     @endforeach
     
 

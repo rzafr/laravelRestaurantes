@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('platos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nombre');
-            $table->text('descripcion');
-            $table->string('foto');
-            $table->double('precio', 4, 2);
-            $table->enum('categoria', ['tradicional', 'italiana', 'china', 'americana']);
-            $table->timestamps();
-            $table->foreignId('restaurante_id')->constrained('restaurantes')->onDelete('cascade');
-        });
+        // Schema::create('platos', function (Blueprint $table) {
+        //     $table->bigIncrements('id');
+        //     $table->string('nombre');
+        //     $table->text('descripcion');
+        //     $table->string('foto');
+        //     $table->double('precio', 4, 2);
+        //     $table->enum('categoria', ['tradicional', 'italiana', 'china', 'americana']);
+        //     $table->timestamps();
+        //     $table->foreignId('restaurante_id')->constrained('restaurantes')->onDelete('cascade');
+        // });
     }
 
     /**
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('platos');
+        // Schema::dropIfExists('platos');
     }
 };

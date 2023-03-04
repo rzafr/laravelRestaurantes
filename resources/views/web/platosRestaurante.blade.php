@@ -6,6 +6,7 @@
     
     
     @foreach($platos as $plato)
+
         <x-plato>
             <div class="col-3">
                 <img src="{{ asset($plato->foto) }}" class="card-img-top" height="250" alt="{{ $plato->nombre }}">
@@ -21,10 +22,10 @@
                 <p class="fw-bold">
                     Precio: {{ $plato->precio }} €
                 </p>
-                <!--Luego controlar que los pedidos tienen que ser al mismo restautante-->
-                <a href="/platos/{{ $plato->id }}"><x-boton type='secondary' mensaje='Agregar a pedido'/></a>
+                <a href="/carrito/{{ $restaurante->id }}/{{ $plato->id }}"><x-boton type='secondary' mensaje='Agregar a carrito'/></a>
             </div>
         </x-plato>
+
     @endforeach
     
 

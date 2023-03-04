@@ -30,6 +30,7 @@
               @auth
                 <li class="nav-item"><a class="nav-link" href="/restaurantes">Restaurantes</a></li>
                 <li class="nav-item"><a class="nav-link" href="/profile">Perfil</a></li>
+                <li class="nav-item"><a class="nav-link" href="/carrito">Carrito</a></li>
                 <form method="POST" action="{{ route('logout') }}">
                   @csrf
                     <li class="nav-item"><a class="nav-link" href="route('logout')"
@@ -49,9 +50,19 @@
     </header>
 
     <main>
-
-
+      <!-- BUSCADOR DE CATEGORIAS -->
       <div class="container">
+        <div class="row no-gutters my-5">
+          <select class="form-select" aria-label="Buscador categorias">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+      
+
+      
         <div class="row no-gutters my-5">
           <div class="col-7">
             <div class="icon-box">
@@ -87,37 +98,11 @@
 
             <!-- Grid column -->
             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-              <!-- Links -->
-              <h6 class="text-uppercase fw-bold mb-4">
-                Destacados
-              </h6>
-              <p>
-                <a href="#!" class="text-reset">Mar Serena</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Luz Azul</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Roma</a>
-              </p>
             </div>
             <!-- Grid column -->
 
             <!-- Grid column -->
             <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-              <!-- Links -->
-              <h6 class="text-uppercase fw-bold mb-4">
-                
-              </h6>
-              <p>
-                <a href="#!" class="text-reset">Boston</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset">Dragon</a>
-              </p>
-              <p>
-                <a href="#!" class="text-reset"></a>
-              </p>
             </div>
             <!-- Grid column -->
 
@@ -125,7 +110,7 @@
             <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
               <!-- Links -->
               <h6 class="text-uppercase fw-bold mb-4">Contacto</h6>
-              <p><i class="fas fa-home me-3 text-secondary"></i> Cuevas del Almanzora, 04610, AL</p>
+              <p><i class="fas fa-home me-3 text-secondary"></i> Cuevas del Almanzora, 04610, Almeria</p>
               <p>
                 <i class="fas fa-envelope me-3 text-secondary"></i>
                 info@indalfood.com

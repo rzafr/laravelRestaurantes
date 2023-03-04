@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('restaurantes', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('nombre');
-            $table->string('direccion');
-            $table->string('ciudad');
-            $table->string('telefono');
-            $table->double('latitud');
-            $table->double('longitud');
-            $table->timestamps();
-        });
+        // Schema::create('restaurantes', function (Blueprint $table) {
+        //     $table->bigIncrements('id');
+        //     $table->string('nombre');
+        //     $table->string('direccion');
+        //     $table->string('ciudad');
+        //     $table->string('telefono');
+        //     $table->double('latitud');
+        //     $table->double('longitud');
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('restaurantes');
+        // Schema::dropIfExists('restaurantes');
     }
 };

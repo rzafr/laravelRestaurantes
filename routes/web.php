@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlatoController;
 use App\Http\Controllers\RestauranteController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PedidoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,7 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Ruta de la pagina principal para los platos mas pedidos, en principio todos los platos pero hay que cambiarlo
+    // Ruta de la pagina principal para los platos mas pedidos, hay que cambiarlo
     //
     //
     //
@@ -76,8 +77,14 @@ Route::middleware('auth')->group(function () {
 
     // Ruta que muestra el detalle del restaurante
     Route::get('/restaurantes/{restaurante}', [RestauranteController::class, 'show']);
-    
 
+    // Carrito
+    Route::get('/carrito/{restaurante}/{plato}', [PedidoController::class, 'addCarrito']);
+    Route::get('/carrito', [PedidoController::class, 'showCarrito']);
+
+    // Pedidos
+    Route::get('/pedido', [PedidoController::class, 'store']);
+    
 });
 
 /**

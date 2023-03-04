@@ -1,112 +1,81 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Repartidores') }}
+            {{ __('Formulario modificar repartidor') }}
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+            <form method="POST" action="/repartidores/{{ $repartidor }}/update">
+                @csrf
 
-                <div class="w-full max-w-xs mx-auto">
-                    <h3 class='text-lg dark:text-gray-400'>Modificar repartidor</h3>
-                    
-                    <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" method='POST' action='/repartidores/{{ $repartidor }}/update'>
-                        @csrf
+                <!-- Nombre -->
+                <div>
+                    <x-input-label for="nombre" :value="__('Nombre')" />
+                    <x-text-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')" required autofocus autocomplete="nombre" />
+                    <x-input-error :messages="$errors->get('nombre')" class="mt-2" />
+                </div>
 
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="dni">
-                                DNI
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="dni" name="dni" type="text" value="{{ old('dni') }}" required>
-                        </div>
+                <!-- Apellidos -->
+                <div>
+                    <x-input-label for="apellidos" :value="__('Apellidos')" />
+                    <x-text-input id="apellidos" class="block mt-1 w-full" type="text" name="apellidos" :value="old('apellidos')" required autofocus autocomplete="apellidos" />
+                    <x-input-error :messages="$errors->get('apellidos')" class="mt-2" />
+                </div>
 
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">
-                                Nombre
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="nombre" name="nombre" type="text" value="{{ old('nombre') }}" required>
-                        </div>
+                <!-- Email -->
+                <div>
+                    <x-input-label for="email" :value="__('Email')" />
+                    <x-text-input id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email')" required autofocus autocomplete="email" />
+                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                </div>
 
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="apellidos">
-                                Apellidos
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="apellidos" name="apellidos" type="text" value="{{ old('apellidos') }}" required>
-                        </div>
+                <!-- Password -->
+                <div>
+                    <x-input-label for="password" :value="__('Password')" />
+                    <x-text-input id="password" class="block mt-1 w-full" type="text" name="password" :value="old('password')" required autofocus autocomplete="password" />
+                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                </div>
 
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
-                                Email
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="email" name="email" type="text" value="{{ old('email') }}">
-                        </div>
+                <!-- Rol -->
+                <div>
+                    <x-input-label for="rol" :value="__('Rol')" />
+                    <x-text-input id="rol" class="block mt-1 w-full" type="text" name="rol" :value="old('rol')" required autofocus autocomplete="rol" value="repartidor" />
+                    <x-input-error :messages="$errors->get('rol')" class="mt-2" />
+                </div>
 
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                                Password
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="password" name="password" type="text" value="{{ old('password') }}">
-                        </div>
+                <!-- Telefono -->
+                <div>
+                    <x-input-label for="telefono" :value="__('Telefono')" />
+                    <x-text-input id="telefono" class="block mt-1 w-full" type="text" name="telefono" :value="old('telefono')" required autofocus autocomplete="telefono" />
+                    <x-input-error :messages="$errors->get('telefono')" class="mt-2" />
+                </div>
 
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="rol">
-                                Rol
-                            </label>
-                            <select
-                                class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-                                name="rol">
-                                <option value="repartidor">Repartidor</option>
-                            </select>
-                        </div>
+                <!-- Salario -->
+                <div>
+                    <x-input-label for="salario" :value="__('Salario')" />
+                    <x-text-input id="salario" class="block mt-1 w-full" type="text" name="salario" :value="old('salario')" required autofocus autocomplete="salario" />
+                    <x-input-error :messages="$errors->get('salario')" class="mt-2" />
+                </div>
 
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="direccion">
-                                Direccion
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="direccion" name="direccion" type="text" value="{{ old('direccion') }}">
-                        </div>
+                <!-- Estado -->
+                <div>
+                    <x-input-label for="estado" :value="__('Estado')" />
+                    <x-text-input id="estado" class="block mt-1 w-full" type="text" name="estado" :value="old('estado')" required autofocus autocomplete="estado" value="libre" />
+                    <x-input-error :messages="$errors->get('estado')" class="mt-2" />
+                </div>
 
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="ciudad">
-                                Ciudad
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="ciudad" name="ciudad" type="text" value="{{ old('ciudad') }}">
-                        </div>
+                <div class="flex items-center justify-end mt-4">
+                    <x-primary-button class="ml-4">
+                        {{ __('Modificar') }}
+                    </x-primary-button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="telefono">
-                                Telefono
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="telefono" name="telefono" type="text" value="{{ old('telefono') }}">
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="salario">
-                                Salario
-                            </label>
-                            <input
-                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="salario" name="salario" type="text" value="{{ old('salario') }}">
-                        </div>
-
+    <!-- 
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="estado">
                                 Estado
@@ -117,22 +86,9 @@
                                 <option value="libre" selected>Libre</option>
                                 <option value="ocupado">Ocupado</option>
                             </select>
-                        </div>
+                        </div>-->
 
 
-                        <div class="flex items-center justify-center">
-                            <button
-                                class="bg-blue-500 hover:bg-blue-700 text-gray-700 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                                type="submit">
-                                Modificar repartidor
-                            </button>
-                        </div>
-                    </form>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
+                        
 </x-app-layout>
 
