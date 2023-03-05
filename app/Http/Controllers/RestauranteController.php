@@ -161,4 +161,23 @@ class RestauranteController extends Controller
         return redirect('/restaurantesAdmin');
     }
 
+    /**
+     * Metodo de la API para crear un restaurante
+     */
+    public function crearRestaurante(Request $request)
+    {
+        // Creamos un objeto Restaurante con los datos del $request y lo grabamos en BBDD 
+        $restaurante = new Restaurante();
+        $restaurante->nombre = $request->nombre;
+        $restaurante->direccion = $request->direccion;
+        $restaurante->ciudad = $request->ciudad;
+        $restaurante->telefono = $request->telefono;
+        $restaurante->latitud = $request->latitud;
+        $restaurante->longitud = $request->longitud;
+
+        $restaurante->save();
+
+        return response()->json(['msg:' => 'Restaurante creado']);
+    }
+
 }

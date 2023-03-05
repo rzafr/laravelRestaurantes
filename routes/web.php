@@ -19,7 +19,7 @@ use App\Http\Controllers\PedidoController;
 */
 
 /**
- * Rutas para la web
+ * Rutas para la web sin iniciar sesion
  */
 
 // Pagina principal
@@ -51,12 +51,32 @@ Route::get('/error', function () {
 });
 
 
+/**
+ * Rutas para los usuarios logueados
+ */
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Pagina principal
+    Route::get('/platos', [PlatoController::class, 'platosMasPedidos'])->name('home');
+
+    // Carrito
+    Route::get('/carrito/{restaurante}/{plato}', [PedidoController::class, 'addCarrito']);
+    Route::get('/carrito', [PedidoController::class, 'showCarrito']);
+
+    // Pedidos
+    Route::get('/pedido', [PedidoController::class, 'store']);
+    
+});
+
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-//Solo si eres admin y estás autenticado
+//Solo si eres admin y estas autenticado
 Route::middleware(['auth', 'rol:admin'])->group(function () {
 
     //Rutas protegidas para admin
@@ -85,23 +105,6 @@ Route::middleware(['auth', 'rol:admin'])->group(function () {
     Route::post('/repartidores/{repartidor}/update' , [UserController::class, 'updateRepartidores']);
 });
 
-/**
- * Rutas para los usuarios logueados
- */
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    
-
-    // Carrito
-    Route::get('/carrito/{restaurante}/{plato}', [PedidoController::class, 'addCarrito']);
-    Route::get('/carrito', [PedidoController::class, 'showCarrito']);
-
-    // Pedidos
-    Route::get('/pedido', [PedidoController::class, 'store']);
-    
-});
 
 require __DIR__.'/auth.php';

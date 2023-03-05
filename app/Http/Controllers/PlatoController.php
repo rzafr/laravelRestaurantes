@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\PlatoCollection;
-use App\Http\Resources\PlatoResource;
 use App\Models\Plato;
-use Illuminate\Http\Request;
 use App\Models\Restaurante;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PlatoController extends Controller
@@ -54,7 +52,7 @@ class PlatoController extends Controller
         $path = $request->file('foto')->store('public');
         
         // Cambiamos public por storage en la BBDD para que se pueda ver la imagen en la web
-        $plato->foto =  str_replace('public', 'storage', $path);
+        $plato->foto = str_replace('public', 'storage', $path);
 
         $plato->save();
 
@@ -142,9 +140,22 @@ class PlatoController extends Controller
     }
 
     /**
-     * Metodos para la API
+     * Metodo de la API para crear un plato
      */
+    public function crearPlato(Request $request, $id)
+    {
+        // Grabamos un objeto Plato en BBDD con los datos del $request
+        $plato = new Plato();
+        $plato->nombre = $request->nombre;
+        $plato->descripcion = $request->descripcion;
+        $plato->foto = $request->foto;
+        $plato->precio = $request->precio;
+        $plato->categoria = $request->categoria;
+        $plato->restaurante_id = $id;
 
-    
+        $plato->save();
+
+        return response()->json(['msg:' => 'Plato creado']);
+    }
 
 }

@@ -14,6 +14,16 @@ class PlatoResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'nombre' => $this->nombre,
+            'descripcion' => $this->descripcion,
+            'foto' => $this->foto,
+            'precio' => $this->precio,
+            'categoria' => $this->categoria,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'restaurante_id' => $this->restaurante_id,
+        ];
     }
 }
