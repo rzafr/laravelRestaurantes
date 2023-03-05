@@ -11,6 +11,7 @@
             <h4>Telefono: {{$restaurante->telefono}}</h4>
             <h4>Latitud: {{$restaurante->latitud}}º</h4>
             <h4>Longitud: {{$restaurante->longitud}}º</h4>
+            <a href="/platos/{{ $restaurante->id }}"><x-boton type='secondary' mensaje='Ver carta'/></a>
         </div>
         <div class='col-5'>
             <div id='map' style="width: 500px; height: 300px"></div>

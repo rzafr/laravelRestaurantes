@@ -13,13 +13,9 @@
   </style>
   <body>
     <header>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary py-4">
+      <nav class="navbar navbar-expand-lg bg-body-secondary py-4">
         <div class="container">
-          @auth
-            <a class="navbar-brand" href="/platos">Indalfood</a>
-          @else
-            <a class="navbar-brand" href="/">Indalfood</a>
-          @endauth
+        <a class="navbar-brand" href="/">Indalfood</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -27,8 +23,8 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
               <li class="nav-item"><a class="nav-link" href="/contacto">Acerca de</a></li>
+              <li class="nav-item"><a class="nav-link" href="/restaurantes">Restaurantes</a></li>
               @auth
-                <li class="nav-item"><a class="nav-link" href="/restaurantes">Restaurantes</a></li>
                 <li class="nav-item"><a class="nav-link" href="/profile">Perfil</a></li>
                 <li class="nav-item"><a class="nav-link" href="/carrito">Carrito</a></li>
                 <form method="POST" action="{{ route('logout') }}">
@@ -50,29 +46,28 @@
     </header>
 
     <main>
-      <!-- BUSCADOR DE CATEGORIAS -->
+      
       <div class="container">
-        <div class="row no-gutters my-5">
-          <select class="form-select" aria-label="Buscador categorias">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-        </div>
-      
 
-      
+        <div class="row no-gutters my-2">
+          <div class="col">
+            @yield('buscador')
+          </div>
+        </div>
+
         <div class="row no-gutters my-5">
-          <div class="col-7">
+          <div class="col">
             <div class="icon-box">
               <h1 class="title">@yield('titulo')</h1>
             </div>
           </div>
         </div>
 
+        <div class="row d-flex justify-content-center">
+
           @yield('main')
-          
+        
+        </div>  
       </div>
     </main>
 

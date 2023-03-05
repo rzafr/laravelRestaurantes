@@ -22,7 +22,9 @@
                 <p class="fw-bold">
                     Precio: {{ $plato->precio }} €
                 </p>
+                @auth
                 <a href="/carrito/{{ $restaurante->id }}/{{ $plato->id }}"><x-boton type='secondary' mensaje='Agregar a carrito'/></a>
+                @endauth
             </div>
         </x-plato>
 

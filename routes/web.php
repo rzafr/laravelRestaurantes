@@ -18,9 +18,39 @@ use App\Http\Controllers\PedidoController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+/**
+ * Rutas para la web
+ */
+
+// Pagina principal
+Route::get('/', [PlatoController::class, 'platosMasPedidos'])->name('home');
+
+// Ruta para mostrar todos los restaurantes
+Route::get('/restaurantes', [RestauranteController::class, 'index']);
+
+// Buscador restaurantes por nombre
+Route::post('/restaurantes/buscarNombre', [RestauranteController::class, 'showRestauranteNombre']);
+
+// Buscador restaurantes por categoria
+Route::post('/restaurantes/buscarCategoria', [RestauranteController::class, 'showRestauranteCategoria']);
+
+// Ruta que muestra el detalle del restaurante
+Route::get('/restaurantes/{restaurante}', [RestauranteController::class, 'show']);
+
+// Ruta para los platos de un restaurante
+Route::get('/platos/{restaurante}', [PlatoController::class, 'platosRestaurante']);
+
+// Ruta para la pagina de contacto
+Route::get('/contacto', function () {
+    return view('contacto');
+});
+
+// Ruta para mostrar mensajes cuando el rol no coincide
+Route::get('/error', function () {
+    return view('admin.error');
+});
+
+
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
@@ -63,20 +93,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Ruta de la pagina principal para los platos mas pedidos, hay que cambiarlo
-    //
-    //
-    //
-    Route::get('/platos', [PlatoController::class, 'index']);
-
-    // Ruta para los platos de un restaurante
-    Route::get('/platos/{restaurante}', [PlatoController::class, 'platosRestaurante']);
-
-    // Ruta para mostrar todos los restaurantes
-    Route::get('/restaurantes', [RestauranteController::class, 'index']);
-
-    // Ruta que muestra el detalle del restaurante
-    Route::get('/restaurantes/{restaurante}', [RestauranteController::class, 'show']);
+    
 
     // Carrito
     Route::get('/carrito/{restaurante}/{plato}', [PedidoController::class, 'addCarrito']);
@@ -85,20 +102,6 @@ Route::middleware('auth')->group(function () {
     // Pedidos
     Route::get('/pedido', [PedidoController::class, 'store']);
     
-});
-
-/**
- * Rutas para la web
- */
-
-// Ruta para la pagina de contacto
-Route::get('/contacto', function () {
-    return view('contacto');
-});
-
-// Ruta solo para mostrar mensajes cuando el rol no coincide
-Route::get('/error', function () {
-    return view('admin.error');
 });
 
 require __DIR__.'/auth.php';

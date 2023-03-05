@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PlatoCollection;
+use App\Http\Resources\PlatoResource;
 use App\Models\Plato;
 use Illuminate\Http\Request;
 use App\Models\Restaurante;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\DB;
 
 class PlatoController extends Controller
 {
@@ -16,7 +18,7 @@ class PlatoController extends Controller
      */
     public function index()
     {
-        return view('web.platos', [ 'platos' => Plato::all() ]);
+        //return view('web.platos', [ 'platos' => Plato::all() ]);
     }
 
     /**
@@ -122,5 +124,27 @@ class PlatoController extends Controller
         return view('admin.platosRestaurante' , ['restaurante' => $restaurante, 'platos' => $restaurante->platos()->get()]);
     }
 
+    /**
+     * Muestra los 10 platos mas pedidos en orden descendente
+     */
+    public function platosMasPedidos()
+    {
+
+        $platosMasPedidos = DB::table('platos')
+                            ->select('platos.*', DB::raw('count(*) as pedidos'))
+                            ->join('pedido_plato', 'platos.id', '=', 'pedido_plato.plato_id')
+                            ->groupBy('platos.id')
+                            ->orderByDesc('pedidos')
+                            ->limit(10)
+                            ->get();
+
+        return view('welcome', ['platosMasPedidos' => $platosMasPedidos, 'restaurantes' => Restaurante::all() ]);
+    }
+
+    /**
+     * Metodos para la API
+     */
+
     
+
 }

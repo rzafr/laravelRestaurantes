@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Plato extends Model
 {
     use HasFactory;
+
+    public function restaurante()
+    {
+        return $this->belongsTo(Restaurante::class);
+    }
 }

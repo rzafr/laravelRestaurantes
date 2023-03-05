@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Restaurante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RestauranteController extends Controller
 {
@@ -75,6 +76,40 @@ class RestauranteController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Restaurante  $restaurante
+     * @return \Illuminate\Http\Response
+     */
+    public function showRestauranteNombre(Request $request)
+    {
+        $restaurante_id = $request->restaurante;
+
+        return redirect('/restaurantes/' . $restaurante_id);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Restaurante  $restaurante
+     * @return \Illuminate\Http\Response
+     */
+    public function showRestauranteCategoria(Request $request)
+    {
+        $categoria = $request->categoria;
+
+        // Sacamos los restaurantes que tienen platos de esa categoria
+        $restaurantes = DB::table('restaurantes')
+                        ->join('platos', 'restaurantes.id', '=', 'platos.restaurante_id')
+                        ->where('platos.categoria', '=', $categoria)
+                        ->groupBy('restaurantes.id')
+                        ->select('restaurantes.*')
+                        ->get();
+
+        return view('web.restaurantes', [ 'restaurantes' => $restaurantes ]);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Restaurante  $restaurante
@@ -122,6 +157,7 @@ class RestauranteController extends Controller
     public function destroy(Restaurante $restaurante)
     {
         $restaurante->delete();
+
         return redirect('/restaurantesAdmin');
     }
 
