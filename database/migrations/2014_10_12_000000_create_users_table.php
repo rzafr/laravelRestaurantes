@@ -13,23 +13,23 @@ return new class extends Migration
      */
     public function up()
     {
-        // Schema::create('users', function (Blueprint $table) {
-        //     $table->bigIncrements('id');
-        //     $table->string('dni')->nullable();
-        //     $table->string('nombre');
-        //     $table->string('apellidos');
-        //     $table->string('email')->unique();
-        //     $table->timestamp('email_verified_at')->nullable();
-        //     $table->string('password');
-        //     $table->string('rol')->default('cliente');
-        //     $table->string('direccion')->nullable();
-        //     $table->string('ciudad')->nullable();
-        //     $table->string('telefono');
-        //     $table->double('salario', 6, 2)->nullable();
-        //     $table->enum('estado', ['libre', 'ocupado'])->nullable();
-        //     $table->rememberToken();
-        //     $table->timestamps();
-        // });
+        Schema::create('users', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('dni')->nullable();
+            $table->string('nombre');
+            $table->string('apellidos');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->string('rol')->default('cliente');
+            $table->string('direccion')->nullable();
+            $table->string('ciudad')->nullable();
+            $table->string('telefono');
+            $table->double('salario', 6, 2)->nullable();
+            $table->enum('estado', ['libre', 'ocupado'])->nullable();
+            $table->rememberToken();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -39,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('users');
+        Schema::dropIfExists('users');
     }
 };
